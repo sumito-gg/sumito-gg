@@ -1,0 +1,390 @@
+/*Victor Tolentino | 20412496*/
+
+/*Colour palette*/
+:root {
+  --brand-dark: #092328;
+  --brand-accent: #2A835F;
+  --brand-primary: #8BBB92;
+  --brand-light: #B2E0BA;
+  --brand-panel: #DDF2E1;
+  --brand-text: #092328;
+  --brand-border: #8BBB92;
+  --brand-heading: #12544F;
+  --brand-link: #12544F;
+  --brand-button-bg: #12544F;
+  --brand-button-text: #ffffff;
+  --brand-button-hover: #092328;
+  --font-heading: 'Encode Sans Expanded', Arial, sans-serif;
+  --font-body: 'Encode Sans Semi Expanded', Arial, sans-serif;
+}
+/* Dark Mode */
+[data-bs-theme="dark"] {
+  --brand-light: #092328;
+  --brand-panel: #12544F;
+  --brand-text: #B2E0BA;
+  --brand-border: #2A835F;
+  --brand-accent: #8BBB92;
+  --brand-heading: #8BBB92;
+  --brand-link: #B2E0BA;
+  --brand-button-bg: #B2E0BA;
+  --brand-button-text: #092328;
+  --brand-button-hover: #8BBB92;
+}
+/* Base style */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--brand-text);
+  background: var(--brand-light);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2, h3, .navbar-brand {
+  font-family: var(--font-heading);
+}
+
+h1 {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  color: var(--brand-text);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+h2 { color: var(--brand-heading); font-size: clamp(1.8rem, 4vw, 2.6rem); }
+h3 { color: var(--brand-heading); font-size: 1.45rem; }
+
+a { color: var(--brand-link); }
+a:hover { color: var(--brand-text); }
+
+/* Navigation Bar */
+.brand-group {
+  min-width: 0;
+}
+
+.brand-avatar {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--brand-primary);
+}
+
+/*
+"Session Live" in Navigation Bar. Idea adapted from satvik's 
+website (https://satvik.live/) with my own palette and redesigned
+*/
+.live-time {
+  flex-direction: column;
+  font-family: "Courier New", monospace;
+  font-size: .7rem;
+  line-height: 1.35;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  color: var(--brand-text);
+  background: rgba(9, 35, 40, .08);
+  border: 1px solid var(--brand-heading);
+  padding: 4px 10px;
+}
+
+[data-bs-theme="dark"] .live-time {
+  background: rgba(178, 224, 186, .08);
+}
+
+/*
+blinking dot before "Session Live"
+*/
+.cx-dot { font-style: normal; }
+
+.cx-dot::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: .2; }
+}
+
+.portfolio-nav {
+  background: var(--brand-panel);
+}
+
+.portfolio-nav .navbar-brand,
+.portfolio-nav .navbar-brand:hover,
+.portfolio-nav .navbar-brand:focus {
+  color: var(--brand-text);
+  font-weight: 700;
+}
+
+.portfolio-nav .nav-link {
+  color: var(--brand-text);
+  font-weight: 600;
+  border-radius: 999px;
+  padding-inline: .85rem !important;
+}
+
+.portfolio-nav .nav-link:hover,
+.portfolio-nav .nav-link:focus,
+.portfolio-nav .nav-link.active {
+  color: var(--brand-dark);
+  background: var(--brand-primary);
+}
+
+.navbar-toggler { border: 2px solid var(--brand-heading); }
+[data-bs-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
+
+.theme-switch { color: var(--brand-text); font-weight: 600; }
+.theme-switch .form-check-input:checked {
+  background-color: var(--brand-button-bg);
+  border-color: var(--brand-button-bg);
+}
+/* Hero (background image) and typewriter for homepage */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  padding-block: 4rem;
+  background:
+    linear-gradient(90deg, rgba(178, 224, 186, .96), rgba(178, 224, 186, .76)),
+    url('../img/miku-background.png') top/cover no-repeat;
+}
+/* gradation effect for hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to bottom, transparent, var(--brand-light));
+  pointer-events: none;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+[data-bs-theme="dark"] .hero {
+  background:
+    linear-gradient(90deg, rgba(9, 35, 40, 0.96), rgba(9, 35, 40, 0.80)),
+    url('../img/zatsune-miku.jpg') top/cover no-repeat;
+}
+
+.standout {
+  color: var(--brand-heading);
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.typing-heading {
+  min-height: 3.6rem;
+  margin-bottom: 1rem;
+}
+
+.typewrite {
+  color: var(--brand-heading);
+  border-right: .08em solid var(--brand-heading);
+  padding-right: .1em;
+  animation: blinkCursor .8s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
+}
+/* buttons and forms */
+.btn-portfolio {
+  display: inline-block;
+  color: var(--brand-button-text);
+  background: var(--brand-button-bg);
+  border: 2px solid var(--brand-button-bg);
+  border-radius: 999px;
+  font-weight: 700;
+  padding: .85rem 1.4rem;
+  text-decoration: none;
+}
+
+.btn-portfolio:hover,
+.btn-portfolio:focus {
+  color: var(--brand-button-text);
+  background: var(--brand-button-hover);
+  border-color: var(--brand-button-hover);
+}
+/* cards and panels */
+.feature-card {
+  position: relative;
+  height: 100%;
+  background: var(--brand-panel);
+  border: 1px solid var(--brand-border);
+  border-radius: 1.25rem;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-.25rem);
+  box-shadow: 0 1rem 2rem rgba(9, 35, 40, .18);
+}
+
+.site-footer {
+  background: var(--brand-dark);
+  color: #B2E0BA;
+}
+
+.site-footer a,
+.site-footer p { color: #B2E0BA; }
+
+:focus-visible {
+  outline: 4px solid var(--brand-accent);
+  outline-offset: 3px;
+}
+
+.filter-group { display: flex; flex-wrap: wrap; gap: .5rem; }
+/*
+Filters project. Adapted from "Arsenal" section on Satvik's website. Use my own colour palette and redesigned.
+*/
+.filter-btn {
+  padding: .35rem .9rem;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+  background: transparent;
+  border: 1px solid var(--brand-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--brand-button-text);
+  background: var(--brand-button-bg);
+  border-color: var(--brand-button-bg);
+}
+
+.project-list { display: flex; flex-direction: column; gap: .75rem; }
+
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  width: 100%;
+  padding: .6rem;
+  text-align: left;
+  color: var(--brand-text);
+  background: var(--brand-panel);
+  border: 1px solid var(--brand-border);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.project-item:hover { transform: translateX(.25rem); }
+
+.project-item.active {
+  border-color: var(--brand-accent);
+  box-shadow: inset 4px 0 0 var(--brand-accent);
+}
+
+.project-item img {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: .5rem;
+  flex-shrink: 0;
+}
+
+.project-item-status {
+  display: block;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.project-item-title { display: block; font-weight: 600; line-height: 1.3; }
+
+.project-detail {
+  background: var(--brand-panel);
+  border: 1px solid var(--brand-border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.project-hero { position: relative; }
+
+.project-hero img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.park img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: .25rem .75rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand-dark);
+  background: var(--brand-primary);
+  border-radius: 999px;
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: .3rem .8rem;
+  margin: 0 .35rem .5rem 0;
+  font-size: .95rem;
+  color: var(--brand-text);
+  background: var(--brand-light);
+  border: 1px solid var(--brand-border);
+  border-radius: 999px;
+}
+
+.page-intro { max-width: 65ch; }
+
+@media (max-width: 767.98px) {
+  .hero {
+    min-height: auto;
+    padding-block: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .portfolio-nav .navbar-brand { font-size: 1.05rem; }
+}
+/* reduce motion blur */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cx-dot::before,
+  .typewrite { animation: none; }
+  .feature-card,
+  .project-item { transition: none; }
+  .feature-card:hover,
+  .project-item:hover { transform: none; }
+}
